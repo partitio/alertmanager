@@ -124,7 +124,18 @@ func NewAPI(
 	openAPI.SilenceGetSilencesHandler = silence_ops.GetSilencesHandlerFunc(api.getSilencesHandler)
 	openAPI.SilencePostSilencesHandler = silence_ops.PostSilencesHandlerFunc(api.postSilencesHandler)
 
-	handleCORS := cors.Default().Handler
+	handleCORS := cors.New(cors.Options{AllowOriginFunc: func(origin string) bool {
+		if api.alertmanagerConfig == nil {
+			return false
+		}
+		for _, o := range api.alertmanagerConfig.AllowedOrigins {
+			if origin == o {
+				return true
+			}
+		}
+		return false
+	},
+	}).Handler
 	api.Handler = handleCORS(openAPI.Serve(nil))
 
 	return &api, nil
