@@ -98,7 +98,7 @@ request method headers url body decoder =
         , body = body
         , expect = Http.expectJson decoder
         , timeout = Nothing
-        , withCredentials = False
+        , withCredentials = True
         }
 
 

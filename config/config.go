@@ -271,7 +271,7 @@ type Config struct {
 	Receivers         []*Receiver        `yaml:"receivers,omitempty" json:"receivers,omitempty"`
 	Templates         []string           `yaml:"templates" json:"templates"`
 	MuteTimeIntervals []MuteTimeInterval `yaml:"mute_time_intervals,omitempty" json:"mute_time_intervals,omitempty"`
-	AllowedOrigins    []string			 `yaml:"allowed_origins,omitempty" json:"allowed_origins,omitempty"`
+	AllowedOrigins    []string           `yaml:"allowed_origins,omitempty" json:"allowed_origins,omitempty"`
 	// original is the input from which the config was parsed.
 	original string
 }
